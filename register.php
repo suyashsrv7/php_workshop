@@ -1,9 +1,23 @@
 <?php
     include_once('connection.php');
+    session_start();
+    /**
+     * check if the user visiting this page is a valid user or not 
+     * i.e user has logged in or not
+     */
+    if( isset($_SESSION['user']))
+    {
+        header('Location:user_panel.php');
+    }
+    else if(isset($_SESSION['admin']))
+    {
+        header('Location:admin/admin_panel.php');
+    }
     /*
         check the request method
         use POST method to send data to backend for credentials like email or password
     */
+    $response = '';
     if( $_SERVER['REQUEST_METHOD'] == 'POST' )
     {
         /*
@@ -14,7 +28,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         //variable for storing response
-        $response = null;
+        $response ='';
 
         //you can validate the data sent from the user using some validations
         if( empty($name) || empty($email) || empty($password))
@@ -52,6 +66,7 @@
                 if( mysqli_query($conn, $query) )
                 {
                     $response = 'Registration Successfull';
+                    header("Location:ems_login.php");
                 }
                 else
                 {

@@ -1,40 +1,51 @@
 <?php
-    session_start();
-    require('connection.php');
-    /** 
-     * check if the user session is set or not
-     * if not then redirect to home page
-    */
-    if(!isset($_SESSION['user']))
-    {
-        header('Location:index.php');
-    }
-    
-    /**
-     * now retrieve events from events table
-     * we can do so by using SELECT query
-     * using the following query we can select all the events in the database
-    */
-    $query = "SELECT * FROM `events` WHERE 1";
-
-    /**
-     * execute the query using mysqli_query() function
-     * make sure connection file is included so that you have access to connection variable $conn
-     * whenever we use SELECT method mysql returns row(s) (if any) on successfull execution of query
-     * follow the following code to retrieve all the events from databse
-    */
-    $result = mysql_query($conn , $query);
-
-    /**
-     * create a array to store all the events (i.e $events) or rows returned by mysql
-     * following code does the same
-     * we use $i as a counter variable
-     */
-    $i = 0;
-    while($row = mysqli_fetch_assoc($result))
-    {
-        $events[$i] = $row;
-    }
-
+	require('user_panel11.php');
 ?>
-<a href ='logout.php'>Logout</a>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Event management System</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url(campaign-bg.jpg);
+            background-position: right;
+            background-size: cover;
+            color:#fff;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar">
+		<div class="title"><h3>EVENT MANAGEMENT SYSTEM</h3> </div>
+		<div class="nav-link logIn"><a href="logout.php"><h3>Log Out</h3></a> </div>
+		<div class="nav-link"><a href="#">
+			<?php if(isset($_SESSION['user'])){
+				echo "<h3>Welcome: ".$_SESSION['user']."</h3>";
+			}
+			?>
+		</a></div>
+	</div>
+	<div style="margin-left:10%;margin-right:10%;" class="container">
+	<br>
+		<h1>Events</h1>
+		<hr>
+		<br><br>
+		<?php
+		for($k=0;$k<$i;$k++)
+		{
+			echo "<div class='details'>
+			<h1 class='name'>".$events[$k]['title']."</h1>
+			<p class='desc'>".$events[$k]['description']."</p>
+			<button class='btn' style='margin-left: 0;' value=".$events[$k]['id'].">Participate</button>
+		</div>";
+		}
+		?>
+		
+
+	</div>
+
+</body>
+</html>

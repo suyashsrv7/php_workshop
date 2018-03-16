@@ -2,13 +2,18 @@
     //start session 
     //must be first line of a page
     session_start();
+    if(isset($_SESSION['user'] )|| isset($_SESSION['admin']))
+    {
+        header('Location:index.php');
+    }
     include_once('connection.php');
+    $response='';
     //check the request method
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $response2 = '';
+        $response = '';
         /**
          * use md5 to encrypt the password and then match it with the password in the databse
          */
@@ -18,15 +23,13 @@
          */
         if(empty($email) || empty($password))
         {
-            $response2 = 'Fields cannot be empty';
+            $response = 'Fields cannot be empty';
         }
         else
         {
             /**
              * secondly check if the user is admin or not
-             * admin is redirected to admin panel
              * write the query to search for the given email and password in admin table
-             * following code does the same
              **/
             $query = "SELECT `username`, `password` FROM `admin` WHERE `username`='$email' AND `password`='$password'";
 
@@ -37,14 +40,12 @@
             if(mysqli_num_rows($result) > 0)
             {
                 $_SESSION['admin'] = $email;
-                header('Location:admin/admin_panel.php');
+                header('Location:admin/ems_admin.php');
             }
 
             /**
              * thirdly check if the user exists in your database
-             * we use select query to find the user with given email and password
-             * you can use sql section of phpmyadmin to write queries
-             **/
+            **/
             $query = "SELECT `email`, `password` FROM `users` WHERE `email`='$email' AND `password`='$password'";
             /**
              * execute the query using musqli_query() function 
@@ -62,7 +63,7 @@
             }
             else
             {
-                $response2 = 'Email or Password is wrong';
+                $response = 'Email or Password is wrong';
             }
         }
         

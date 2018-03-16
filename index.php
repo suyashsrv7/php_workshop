@@ -1,42 +1,51 @@
-<!DOCTYPE html>
 <?php 
     require('register.php');
-    require('login.php');
-    /**
-     * check if the user visiting this page is a valid user or not 
-     * i.e user has logged in or not
-     */
-    if( isset($_SESSION['user']))
-    {
-        header('Location:user_panel.php');
-    }
-    else if(isset($_SESSION['admin']))
-    {
-        header('Location:admin/admin_panel.php');
-    }
+    
 ?>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+	<title>Event management System</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 </head>
 <body>
-    <form action='index.php' method='post'>
-        <?php if(isset($response)){ echo "<span>".$response."</span>";} ?>
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
-        <button type="submit">Register</button> 
-    </form>
-    <form action="index.php" method="post">
-        <?php if(isset($response2)){ echo "<span>".$response2."</span>";} ?>
-        <input type="text" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
+	<div class="navbar">
+		<div class="title"><h3>EVENT MANAGEMENT SYSTEM</h3> </div>
+		<div class="nav-link logIn"><a href="ems_login.php"><h3>Sign In</h3></a> </div>
+		<div class="nav-link"><a href="index.php"><h3>Sign Up</h3></a></div>
+	</div>
+	<div class="container">
+		<div class="content">
+			<h1>EVENT MANAGEMENT SYSTEM</h1>
+		</div>
+		<div class="form">
+			<form action="index.php" method="post">
+				<h1 class="form-title" for="name">Register</h1>
+				<?php
+					if(!empty($response)){
+						echo "<div class='form-group'><span>".$response."</span> </div>";
+					}
+				?>
+				<div class="form-group">
+				   <label class="form-label">Name :</label><br/>
+				   <input class="form-control" id="name" placeholder="Name" name="name">
+			    </div>
+			    <div class="form-group" for="email">
+			    	<label class="form-label">E-mail :</label><br/>
+			    	<input class="form-control" id="email" placeholder="Email" name="email">
+			    </div>
+			    <div class="form-group" for="password">
+			    	<label class="form-label">Password :</label><br/>
+			    	<input class="form-control" id="password" placeholder="Password" name="password">
+			    </div>
+			    <button class="btn" type="submit">Register</button>
+			</form>
+
+		</div>
+
+	</div>
+
 </body>
 </html>

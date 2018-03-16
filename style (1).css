@@ -1,0 +1,140 @@
+body{
+	margin: 0;
+	font-family: Muli;
+}
+.navbar{
+    color:#fff;
+    width:100vw;
+    display: block;
+	top:0;
+	left:0;
+	position: fixed;
+	background-color: #000;
+}
+a{
+	text-decoration: none;
+	color:#fff;
+}
+a:hover{
+
+}
+.title{
+	/*display: inline;*/
+	float:left;
+}
+.nav-link{
+	float:right;
+	/*display: inline;*/
+}
+.navbar .title{
+	padding:0 80px 0 60px;
+}
+.nav-link{
+	padding:0 20px;
+}
+.logIn{
+	padding-right:100px;
+}
+.container{
+	/*margin-top:100px;*/
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	height:100vh;
+	padding-top: 50px;
+	box-sizing: border-box;
+	justify-content: center;
+
+}
+.content{
+     height: 100%;
+     width:50%;
+	float: left;
+	background-color: rgba(0,0,0,0.5);
+	color:#fff;
+    box-sizing: border-box;
+	text-align: center;
+	padding:50px 50px;
+
+    background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url(campaign-bg.jpg);
+    background-position: right;
+    background-size: cover;
+}
+.content h1{
+	font-size: 3rem;
+	text-align: left;
+}
+.form{
+	height: 100%;
+	width:50%;
+	float:right;
+    box-sizing: border-box;
+	/*text-align: center;*/
+	justify-content: center;
+	padding:10vh 100px;
+
+}
+.form-group{
+	padding:10px;
+}
+.form-control{
+	padding:10px 10px;
+	border-radius: 5px;
+	border:1px solid black;
+	margin: 10px;
+    width:23vw;
+}
+.form-label{
+	padding:10px;
+	text-align: left;
+	font-size: 1.25rem;
+}
+.btn{
+    border:none;
+    color:white;
+    padding:14px 28px;
+    cursor:pointer;
+    background-color:#f44336;
+    margin-top:10px;
+    margin-left: 25px;
+    border-radius: 5px;
+    margin-left:12vw; 
+}
+.btn:hover {
+	background: #da190b;
+	text-align: center;
+}
+.form-title{
+	text-align: center;
+	font-size: 2rem;
+}
+.login-form{
+	padding:10px;
+	padding-bottom: 15px;
+	border:2px solid #fff;
+	border-radius: 5px;
+	display: inline-block;
+	margin-left: 35vw;
+}
+.small{
+	text-align: center;
+}
+.form-ques{
+	padding:10px;
+	/*border:2px solid #fff;
+	border-radius:2px;*/
+	display: inline-block;
+	margin-top:2.5vh;
+	margin-left: 35vw;
+}
+.details{
+	padding:20px;
+	margin:30px;
+	margin-left: 17vw;
+	background-color: #fff;
+	color:#000;
+	width:60vw;
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px;
+}

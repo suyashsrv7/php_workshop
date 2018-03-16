@@ -11,9 +11,12 @@
     }
 
 ?>
-<form action="create_event.php" method="post">
+<form action="admin_panel.php" method="post">
+    <?php if(isset($response)) echo "<span>".$response."<span>";?>
     <input type="text" name="title" placeholder="Title"><br>
     <textarea type="text" name="description" placeholder="Description"></textarea><br>
     <input type="date" name="date" placeholder="Date"><br>
-    <button type="submit">Create</butto>
+    <button type="submit">Create</button>
 </form>
+<a href="../logout.php">Logout</a>
+
